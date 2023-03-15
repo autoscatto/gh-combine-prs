@@ -23,7 +23,7 @@ Prerequisites:
 To install this extension:
 
 ```
-gh extension install rnorth/gh-combine-prs
+gh extension install autoscatto/gh-combine-prs
 ```
 
 ## Usage
