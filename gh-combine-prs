@@ -24,6 +24,9 @@ Usage: gh combine-prs --query "QUERY"
 		--skip-pr-check
 				if set, will combine matching PRs even if they are not passing checks.
 				Defaults to false when not specified
+		--combined-branch-name
+				if set, use this instead of combined-pr-branch branch name
+				
 
 EOF
 }
@@ -42,6 +45,7 @@ LIMIT=50
 QUERY=""
 SKIP_PR_CHECK="false"
 SELECTED_PR_NUMBERS=
+COMBINED_BRANCH_NAME="combined-pr-branch"
 while [ $# -gt 0 ]; do
 	case "$1" in
 	-h|--help)
@@ -62,6 +66,9 @@ while [ $# -gt 0 ]; do
 		;;
 	--skip-pr-check)
 		SKIP_PR_CHECK="true"
+	--combined-branch-name)
+		shift
+		COMBINED_BRANCH_NAME=$1	
 		;;
 	*)
 		help >&2
@@ -72,7 +79,7 @@ while [ $# -gt 0 ]; do
 done
 
 DEFAULT_BRANCH=$(gh api /repos/:owner/:repo --jq '.default_branch')
-COMBINED_BRANCH=combined-pr-branch
+COMBINED_BRANCH=$COMBINED_BRANCH_NAME
 BODY_FILE=/tmp/.combined-pr-body.md
 
 if [[ -z "${QUERY}" ]]; then
