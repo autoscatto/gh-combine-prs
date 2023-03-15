@@ -51,6 +51,8 @@ gh combine-prs --query "QUERY"
     --skip-pr-check
             if set, will combine matching PRs even if they are not passing checks.
             Defaults to false when not specified
+    --combined-branch-name
+			if set, use this instead of combined-pr-branch branch name
 
 ## License
 
