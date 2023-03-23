@@ -66,6 +66,7 @@ while [ $# -gt 0 ]; do
 		;;
 	--skip-pr-check)
 		SKIP_PR_CHECK="true"
+		;;
 	--combined-branch-name)
 		shift
 		COMBINED_BRANCH_NAME=$1	
